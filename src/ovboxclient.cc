@@ -38,6 +38,7 @@
 #endif
 
 #include "errmsg.h"
+#include <algorithm>
 #include <cmath>
 #include <errno.h>
 
