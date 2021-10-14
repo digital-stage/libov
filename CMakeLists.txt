@@ -118,7 +118,7 @@ foreach (TASCAR_PLUGIN_LIBRARY IN LISTS TASCAR_PLUGIN_LIBRARIES)
 endforeach ()
 set_property(GLOBAL PROPERTY OV_PLUGIN_LIBRARIES)
 set_property(GLOBAL PROPERTY OV_PUBLIC_PLUGIN_LIBRARIES)
-add_subdirectory(libds EXCLUDE_FROM_ALL)
+add_subdirectory(libds)
 
 
 ##
