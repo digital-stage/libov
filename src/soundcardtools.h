@@ -21,32 +21,34 @@
 #define SOUNDCARDTOOLS_H
 
 #ifndef LINUX
+
 #include <soundio/soundio.h>
+
 #endif
+
 #include <string>
 #include <vector>
 
 struct snddevname_t {
-  std::string dev;
-  std::string desc;
+    std::string dev;
+    std::string desc;
 };
 
 // get a list of available device names. Implementation may depend on OS and
 // audio backend
 std::vector<snddevname_t> list_sound_devices();
 
-std::string url2localfilename(const std::string& url);
+std::string url2localfilename(const std::string &url);
 
 // NEW ALTERNATIVE: Use SoundCardTools
 struct sound_card_t {
-  std::string id;
-  std::string name;
-  unsigned int num_input_channels;
-  unsigned int num_output_channels;
-  int sample_rate;
-  std::vector<int> sample_rates;
-  double software_latency;
-  bool is_default;
+    std::string id;
+    std::string name;
+    unsigned int num_channels;
+    int sample_rate;
+    std::vector<int> sample_rates;
+    double software_latency;
+    bool is_default;
 };
 
 #ifndef LINUX
@@ -54,20 +56,24 @@ struct sound_card_t {
 class sound_card_tools_t {
 
 public:
-  sound_card_tools_t();
+    sound_card_tools_t();
 
-  ~sound_card_tools_t();
+    ~sound_card_tools_t();
 
-  std::vector<sound_card_t> get_sound_devices();
+    sound_card_t convert(struct SoundIoDevice*, bool);
 
-  std::vector<struct SoundIoDevice*> get_input_sound_devices();
+    std::vector<sound_card_t> get_input_sound_cards();
 
-  std::vector<struct SoundIoDevice*> get_output_sound_devices();
+    std::vector<sound_card_t> get_output_sound_cards();
 
-  struct SoundIo* get_sound_io();
+    std::vector<struct SoundIoDevice *> get_raw_input_sound_devices();
+
+    std::vector<struct SoundIoDevice *> get_raw_output_sound_devices();
+
+    struct SoundIo *get_sound_io();
 
 private:
-  struct SoundIo* soundio;
+    struct SoundIo *soundio;
 };
 
 #endif

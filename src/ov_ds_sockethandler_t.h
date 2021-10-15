@@ -202,7 +202,7 @@ private:
   ov_render_base_t* renderer;
   DigitalStage::Api::Client* client;
   bool insideOvStage;
-  bool enabled;
+  bool enabled{};
 };
 
 #endif // OV_DS_SOCKETHANDLER_H_
