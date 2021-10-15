@@ -97,7 +97,7 @@ void ov_client_digitalstage_t::onReady(
                 // Send new sound card
                 nlohmann::json payload;
                 payload["label"] = soundDevice.name;
-                payload["driver"] = "jack";
+                payload["audioDriver"] = "jack";
                 payload["type"] = "input";
                 payload["sampleRate"] = soundDevice.sample_rate;
                 payload["sampleRates"] = soundDevice.sample_rates;
@@ -154,7 +154,7 @@ void ov_client_digitalstage_t::onReady(
                 // Send new sound card
                 nlohmann::json payload;
                 payload["label"] = soundDevice.name;
-                payload["driver"] = "jack";
+                payload["audioDriver"] = "jack";
                 payload["type"] = "output";
                 payload["sampleRate"] = soundDevice.sample_rate;
                 payload["sampleRates"] = soundDevice.sample_rates;

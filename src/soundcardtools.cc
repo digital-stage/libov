@@ -140,6 +140,7 @@ sound_card_t sound_card_tools_t::convert(struct SoundIoDevice *sound_device, boo
     soundcard.is_default = is_default;
     soundcard.software_latency =
             sound_device->software_latency_current;
+    return soundcard;
 }
 
 std::vector<struct SoundIoDevice *> sound_card_tools_t::get_raw_input_sound_devices() {
