@@ -175,30 +175,36 @@ struct SoundIo *sound_card_tools_t::get_sound_io() {
 }
 
 std::vector<sound_card_t> sound_card_tools_t::get_input_sound_cards() {
+
+    if(nullptr == this->soundio->userdata)
+        return std::vector<sound_card_t>();
+
     int default_input = soundio_default_input_device_index(this->soundio);
     const std::vector<struct SoundIoDevice *> input_sound_devices =
             this->get_raw_input_sound_devices();
+
     std::vector<sound_card_t> soundcards;
     for (size_t i = 0; i < input_sound_devices.size(); i++) {
-        struct SoundIoDevice *input_sound_device = input_sound_devices[i];
+        SoundIoDevice *input_sound_device = input_sound_devices[i];
         bool is_default = (size_t) default_input == i;
-        auto soundcard = this->convert(input_sound_device, is_default);
-        soundcards.push_back(soundcard);
+        soundcards.emplace_back(std::move(this->convert(input_sound_device, is_default)));
     }
     return soundcards;
 }
 
 
 std::vector<sound_card_t> sound_card_tools_t::get_output_sound_cards() {
+    if(nullptr == this->soundio->userdata)
+        return std::vector<sound_card_t>();
+
     int default_output = soundio_default_output_device_index(this->soundio);
     const std::vector<struct SoundIoDevice *> output_sound_devices =
             this->get_raw_output_sound_devices();
     std::vector<sound_card_t> soundcards;
     for (size_t i = 0; i < output_sound_devices.size(); i++) {
-        struct SoundIoDevice *output_sound_device = output_sound_devices[i];
+        SoundIoDevice *output_sound_device = output_sound_devices[i];
         bool is_default = (size_t) default_output == i;
-        auto soundcard = this->convert(output_sound_device, is_default);
-        soundcards.push_back(soundcard);
+        soundcards.emplace_back(std::move(this->convert(output_sound_device, is_default)));
     }
     return soundcards;
 }
