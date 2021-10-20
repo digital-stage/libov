@@ -2,6 +2,7 @@
 cmake-build-*
 *~
 *.o
+*.a
 build
 .DS_Store
 .ov_version
@@ -10,3 +11,5 @@ build
 googletest
 libtascar
 CMakeFiles
+*.cmake
+*.cbp
