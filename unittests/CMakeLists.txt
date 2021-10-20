@@ -5,7 +5,7 @@ project(libovTests
         VERSION 0.1
         DESCRIPTION "Tests for libov")
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(TESTOVBOXVERSION "0.7.26-280b228-modified")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../cmake/modules)
 set(LIBOV_DIR ${PROJECT_SOURCE_DIR}/../src)
@@ -46,6 +46,7 @@ file(GLOB
         ${LIBOV_DIR}/ov_client_orlandoviols.cc
         ${LIBOV_DIR}/ov_client_udpsocket.cc
         ${LIBOV_DIR}/ov_client_listsounddevs.cc
+        ${LIBOV_DIR}/ov_ds_config.cc
         ${LIBOV_DIR}/ov_tools.cc
         ${LIBOV_DIR}/ovboxclient.cc
         ${LIBOV_DIR}/ov_types.cc
@@ -66,7 +67,6 @@ set(EXTERNAL_LIBRARIES
         ${SOUNDIO_LIBRARY}
         ${ALSA_LIBRARY}
         ${XercesC_LIBRARIES}
-        ${LIBXML++_LIBRARIES}
         ${LIBXML++_LIBRARIES}
         pthread )
 
